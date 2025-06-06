@@ -1,0 +1,16 @@
+{
+  "name": "calculadora-ci",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "build": "echo 'Build completo'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.6.0"
+  }
+}
