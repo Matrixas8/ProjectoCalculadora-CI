@@ -1,3 +1,5 @@
+//Toma y actualiza los datos de la calculadora en el HTML
+
 function calcular() {
   const num1 = Number(document.getElementById('num1').value);
   const num2 = Number(document.getElementById('num2').value);
