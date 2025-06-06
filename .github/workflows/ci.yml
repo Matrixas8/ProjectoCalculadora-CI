@@ -11,17 +11,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Usar Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - uses: actions/checkout@v3
 
-    - name: Instalar dependencias
-      run: npm install
+      - name: Usar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Ejecutar build
-      run: npm run build
+      - name: Instalar dependencias
+        run: npm install
 
-    - name: Ejecutar tests
-      run: npm test
+      - name: Ejecutar build
+        run: npm run build
+
+      - name: Ejecutar tests
+        run: npm test
+
+  notify-on-failure:
+    needs: build-and-test
+    if: failure()  # <== Solo se ejecuta si falló el anterior
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enviar notificación a Slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": ":x: El workflow *${{ github.workflow }}* falló en el job *${{ github.job }}*.\n🔧 Repositorio: *${{ github.repository }}*\n👤 Autor: *${{ github.actor }}*\n🔗 <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|Ver ejecución>"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
