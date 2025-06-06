@@ -1,5 +1,3 @@
-//Toma y actualiza los datos de la calculadora en el HTML
-
 function calcular() {
   const num1 = Number(document.getElementById('num1').value);
   const num2 = Number(document.getElementById('num2').value);
@@ -8,13 +6,13 @@ function calcular() {
 
   switch(op) {
     case 'sumar':
-      resultado = num1 + num2;
+      resultado = window.calculadora.sumar(num1, num2);
       break;
     case 'restar':
-      resultado = num1 - num2;
+      resultado = window.calculadora.restar(num1, num2);
       break;
     case 'multiplicar':
-      resultado = num1 * num2;
+      resultado = window.calculadora.multiplicar(num1, num2);
       break;
   }
 
