@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/Matrixas8/ProjectoCalculadora-CI/actions/workflows/ci.yml/badge.svg)](https://github.com/Matrixas8/ProjectoCalculadora-CI/actions/workflows/ci.yml)
+
 # Calculadora Básica con CI
 
 Este es un proyecto de calculadora básica (suma, resta y multiplicación) creado con Node.js, HTML, CSS y JavaScript. También incluye tests con Jest y un flujo de integración continua usando GitHub Actions.
