@@ -32,12 +32,26 @@ jobs:
     if: failure()  # <== Solo se ejecuta si falló el anterior
     runs-on: ubuntu-latest
     steps:
+      - name: Obtener hora actual
+        id: timestamp
+        run: echo "time=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
+
       - name: Enviar notificación a Slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
           payload: |
             {
-              "text": ":x: El workflow *${{ github.workflow }}* falló en el job *${{ github.job }}*.\n🔧 Repositorio: *${{ github.repository }}*\n👤 Autor: *${{ github.actor }}*\n🔗 <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|Ver ejecución>"
+              "text": ":x: 
+              *Fallo en el workflow de CI*\n\n👤 
+              *Usuario:* ${{ github.actor }}\n🕒 
+              *Hora:* ${{ steps.timestamp.outputs.time }}\n🔁 
+              *Commit:* `${{ github.sha }}` - _${{ github.event.head_commit.message }}_\n❌ 
+              *Test fallido:* Revisa los logs para más detalles.\n\n🔗 
+              <${{ github.server_url }}
+              /${{ github.repository }}
+              /actions/runs/
+              ${{ github.run_id }}
+              |Ver ejecución>"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
