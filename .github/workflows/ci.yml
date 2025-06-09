@@ -41,17 +41,7 @@ jobs:
         with:
           payload: |
             {
-              "text": ":x: 
-              *Fallo en el workflow de CI*\n\n👤 
-              *Usuario:* ${{ github.actor }}\n🕒 
-              *Hora:* ${{ steps.timestamp.outputs.time }}\n🔁 
-              *Commit:* `${{ github.sha }}` - _${{ github.event.head_commit.message }}_\n❌ 
-              *Test fallido:* Revisa los logs para más detalles.\n\n🔗 
-              <${{ github.server_url }}
-              /${{ github.repository }}
-              /actions/runs/
-              ${{ github.run_id }}
-              |Ver ejecución>"
+              "text": ":x: *Fallo en el workflow de CI*\n\n👤 *Usuario:* ${{ github.actor }}\n🕒 *Hora:* ${{ steps.timestamp.outputs.time }}\n🔁 *Commit:* `${{ github.sha }}` - _${{ github.event.head_commit.message }}_\n❌ *Test fallido:* Revisa los logs para más detalles.\n\n🔗 <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|Ver ejecución>"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
