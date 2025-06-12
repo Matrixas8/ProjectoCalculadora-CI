@@ -7,7 +7,7 @@ function restar(a, b) {
 }
 
 function multiplicar(a, b) {
-  return a * b;
+  return a + b;
 }
 
 // Para usar en tests (CommonJS)
